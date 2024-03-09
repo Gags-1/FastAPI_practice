@@ -1,0 +1,32 @@
+from sqlalchemy import TIMESTAMP, Column, ForeignKey,Integer, String, Boolean, text
+from .database import Base
+from sqlalchemy.orm import relationship
+
+class Post(Base):
+    __tablename__="posts"
+
+
+    id=Column(Integer,primary_key=True, nullable=False)
+    title=Column(String, nullable=False)
+    content=Column(String,nullable=False)
+    published=Column(Boolean,server_default='TRUE', nullable=False)
+    created_at=Column(TIMESTAMP(timezone=True),nullable=False,server_default=text('now()'))
+    user_id=Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False) #Adding foreign key to connect the user table with the users table
+    
+    user=relationship("User") #Adding a relationship to connect the user table with the posts table
+
+    # REMEMBER IF YOU WANT TO CHANGE ANYTHING IN YOUR PRE-EXISTING TABLE, YOU FIRST HAVE TO DELETE THE TABLE
+    # AND THEN ONLY A NEW TABLE CAN BE CREATED WHICH IS KIND OF WEIRD BECAUSE YOU'LL THEN HAVE TO DELETE ALL YOUR DATA
+    # SO MAKE SURE TO CHECK OTHER OPTIONS AFTER THIS, YOU CAN USE A DATABASE MIGRATION TOOL
+
+
+
+class User(Base):
+    __tablename__="users"
+
+    id=Column(Integer,primary_key=True, nullable=False)
+    username=Column(String, nullable=False)
+    email=Column(String, nullable=False,unique=True)
+    password=Column(String, nullable=False)
+    created_at=Column(TIMESTAMP(timezone=True),nullable=False,server_default=text('now()'))
+
