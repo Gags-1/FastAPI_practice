@@ -1,9 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import psycopg2
-from psycopg2.extras import RealDictCursor
-import time
+
 
 SQLALCHEMY_DATABASE_URL='postgresql://postgres:motherchod2821@localhost/FastAPI'
 
@@ -24,13 +22,13 @@ def get_db():
         db.close()
 
 #This one is just for raw sql not for sqlalchemy which we are actually using
-while True:
-    try: 
-        conn=psycopg2.connect(host='localhost',database='FastAPI',user='postgres',password='motherchod2821',cursor_factory=RealDictCursor)
-        cursor=conn.cursor()
-        print("Database connection successfull")
-        break
-    except Exception as error:
-        print("Connection to database failed")
-        print("Error: ",error)
-        time.sleep(2)
+# while True:
+#     try: 
+#         conn=psycopg2.connect(host='localhost',database='FastAPI',user='postgres',password='motherchod2821',cursor_factory=RealDictCursor)
+#         cursor=conn.cursor()
+#         print("Database connection successfull")
+#         break
+#     except Exception as error:
+#         print("Connection to database failed")
+#         print("Error: ",error)
+#         time.sleep(2)

@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 from . import models
 from .database import engine
 from .routers import post, user, auth
+from .config import settings
 
 models.Base.metadata.create_all(bind=engine) #Base enhine for orm //from database.py file
 
