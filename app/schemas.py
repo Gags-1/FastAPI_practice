@@ -1,5 +1,7 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, conint
 from datetime import datetime
+from typing import Optional
+from pydantic import BaseModel, EmailStr, Field, conint
 from typing import Optional
 #This is BaseModel used to set parameters in the posts that the user will create
 class PostBase(BaseModel):
@@ -23,8 +25,16 @@ class Post(PostBase):
     id: int
     created_at: datetime
     user_id: int
-    user: UserReponse #This is used to add the user details in the post response
+    user: UserReponse #This is used to add the user details in the post response\
+    # vote: int
     #Rest of the parameters are same as PostBase
+    class config:
+        orm_mode = True
+
+class PostOut(BaseModel):
+    Post: Post
+    votes: int
+
     class config:
         orm_mode = True
 
@@ -45,3 +55,7 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: Optional[str]
+
+class Vote(BaseModel):
+    post_id: int
+    dir: int = Field(..., ge=0, le=1)
