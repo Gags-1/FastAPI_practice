@@ -9,6 +9,7 @@ from .config import settings
 oauth2_scheme= OAuth2PasswordBearer(tokenUrl="login")   #Endpoint for login
 #SECRET_KEY
 #Algorithm
+
 #ACCESS_TOKEN_EXPIRE_MINUTES
 
 SECRET_KEY=settings.secret_key #RANDOM STRING, this one is taken from the fastapi documentation
