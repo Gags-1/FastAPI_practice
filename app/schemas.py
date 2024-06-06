@@ -1,7 +1,7 @@
-from pydantic import BaseModel, EmailStr, conint
+from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, EmailStr, Field, conint
+from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 #This is BaseModel used to set parameters in the posts that the user will create
 class PostBase(BaseModel):

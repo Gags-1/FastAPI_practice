@@ -1,3 +1,5 @@
+#This one right now is basically used to hash the passwords
+
 from passlib.context import CryptContext
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
